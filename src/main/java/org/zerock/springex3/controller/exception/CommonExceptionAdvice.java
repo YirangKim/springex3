@@ -15,9 +15,18 @@ import java.util.Arrays;
 public class CommonExceptionAdvice {
 
     @ResponseBody
+    @ExceptionHandler(NumberFormatException.class)
+    public String exceptNumber(NumberFormatException numberFormatException){
+        log.error("---------------------------");
+        log.error(numberFormatException.getMessage());
+
+        return "Number FORMAT EXCEPTION";
+    }
+
+    @ResponseBody
     @ExceptionHandler(Exception.class)
     public String exceptNumber(Exception exception){
-        log.error("---------------------------");
+        log.error("1---------------------------");
         log.error(exception.getMessage());
 
         StringBuffer buffer = new StringBuffer("<ul>");
@@ -29,7 +38,7 @@ public class CommonExceptionAdvice {
 
         buffer.append("</ul>");
 
-        return "Number FORMAT EXCEPTION";
+        return buffer.toString();
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
